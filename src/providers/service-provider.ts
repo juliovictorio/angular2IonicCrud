@@ -13,7 +13,8 @@ import 'rxjs/add/operator/map';
 @Injectable()
 export class ServiceProvider {
 
-  api : string = 'http://localhost:8082/api/api/';
+  // api : string = 'http://localhost:8082/api/api/';
+  api : string = 'http://localhost/APIs/';
 
   constructor(public http: Http) {
     console.log('Hello ServiceProvider Provider');
@@ -22,7 +23,7 @@ export class ServiceProvider {
   }
 
   getData(){
-     return this.http.get(this.api + 'apiRecupera').map(res => res.json())
+     return this.http.get(this.api + 'apiRecupera.php').map(res => res.json())
   }
 
 }

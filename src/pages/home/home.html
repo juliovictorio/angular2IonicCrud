@@ -13,8 +13,11 @@
   <p>{{teste}}</p>
   <ion-card>
         <ion-card-content *ngFor="let user of users">
-              <h1>{{user.nome}}</h1>
+              <h1 *ngIf="nome">{{user.nome}}</h1>
               <p>{{user.email}}</p>
         </ion-card-content>
+        <button ion-button (click)="mostraNome()">
+          Mostrar nome
+        </button>
   </ion-card>
 </ion-content>

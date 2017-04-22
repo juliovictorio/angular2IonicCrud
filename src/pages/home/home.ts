@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { NavController } from 'ionic-angular';
 
 import {ServiceProvider} from '../../providers/service-provider';
@@ -7,14 +7,18 @@ import {ServiceProvider} from '../../providers/service-provider';
   selector: 'page-home',
   templateUrl: 'home.html'
 })
-export class HomePage {
+export class HomePage implements OnInit{
+
+  ngOnInit(){
+    this.getData();
+  }
 
   users : any[];
+  nome : boolean = false;
 
   teste:string = "testando 2...";
   constructor(public navCtrl: NavController, public service : ServiceProvider) {
     console.log('home constructor');
-    this.getData();
   }
 
   getData(){
@@ -24,5 +28,9 @@ export class HomePage {
         err => console.log(err)
     );
   }
+
+  mostraNome(){
+      this.nome = !this.nome;
+  };
 
 }
