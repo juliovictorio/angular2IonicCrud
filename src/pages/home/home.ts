@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Validators, FormBuilder } from '@angular/forms';
 import { NavController } from 'ionic-angular';
 
 import {ServiceProvider} from '../../providers/service-provider';
@@ -13,14 +14,21 @@ export class HomePage implements OnInit{
     this.getData();
   }
 
+  cadastro : any = {};
   users : any[];
   nome : boolean = false;
   nomeTeste : string;
   email : string = "";
 
   teste:string = "testando 2...";
-  constructor(public navCtrl: NavController, public service : ServiceProvider) {
+  constructor(public navCtrl: NavController, public formBuilder : FormBuilder,
+               public service : ServiceProvider) {
     console.log('home constructor');
+    this.cadastro = this.formBuilder.group({
+        nome:['', Validators.required],
+        email:['', Validators.required],
+        senha:['', Validators.required]
+    });
   }
 
   getData(){
@@ -34,5 +42,9 @@ export class HomePage implements OnInit{
   mostraNome(){
       this.nome = !this.nome;
   };
+
+  postDados(){
+    console.log(this.cadastro.value)
+  }
 
 }

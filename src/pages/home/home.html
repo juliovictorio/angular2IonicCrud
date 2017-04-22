@@ -10,6 +10,27 @@
 </ion-header>
 
 <ion-content padding>
+  <h2>Cadastro</h2>
+  <!--cadastro é nome do json que será gerado-->
+  <form [formGroup]="cadastro" (ngSubmit)="postDados()" >
+    <ion-list>
+      <ion-item>
+          <ion-label floating></ion-label>
+          <ion-input name="nome" type="text" formControlName="nome"></ion-input>
+      </ion-item>
+      <ion-item>
+          <ion-label floating></ion-label>
+          <ion-input name="email" type="text" formControlName="email"></ion-input>
+      </ion-item>
+      <ion-item>
+          <ion-label floating></ion-label>
+          <ion-input name="senha" type="password" formControlName="senha"></ion-input>
+      </ion-item>
+      <ion-item>
+          <button [disabled]="cadastro.invalid" ion-button full block color="danger">Cadastrar</button>
+      </ion-item>
+    </ion-list>
+  </form>
   <ion-input type="text" name="nome" [(ngModel)]="nomeTeste"></ion-input>
   <input type="text" name="email" 
       [value]="email"
