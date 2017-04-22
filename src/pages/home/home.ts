@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { Validators, FormBuilder } from '@angular/forms';
+//import { Validators, FormBuilder } from '@angular/forms'; //form 1
+import { NgForm } from '@angular/forms';
 import { NavController } from 'ionic-angular';
 
 import {ServiceProvider} from '../../providers/service-provider';
@@ -16,19 +17,20 @@ export class HomePage implements OnInit{
 
   cadastro : any = {};
   users : any[];
-  nome : boolean = false;
+  deveMostrarNome : boolean = true;
   nomeTeste : string;
-  email : string = "";
+  emailTeste : string = "";
 
   teste:string = "testando 2...";
-  constructor(public navCtrl: NavController, public formBuilder : FormBuilder,
+  constructor(public navCtrl: NavController, 
+              /*public formBuilder : FormBuilder, do form 1*/
                public service : ServiceProvider) {
     console.log('home constructor');
-    this.cadastro = this.formBuilder.group({
+    /*this.cadastro = this.formBuilder.group({ //do form 1
         nome:['', Validators.required],
         email:['', Validators.required],
         senha:['', Validators.required]
-    });
+    });*/
   }
 
   getData(){
@@ -40,7 +42,7 @@ export class HomePage implements OnInit{
   }
 
   mostraNome(){
-      this.nome = !this.nome;
+      this.deveMostrarNome = !this.deveMostrarNome;
   };
 
   postDados(){

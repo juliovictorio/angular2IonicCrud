@@ -10,9 +10,9 @@
 </ion-header>
 
 <ion-content padding>
-  <h2>Cadastro</h2>
+  <!--<h2>Cadastro</h2>-->
   <!--cadastro é nome do json que será gerado-->
-  <form [formGroup]="cadastro" (ngSubmit)="postDados()" >
+  <!-- <form [formGroup]="cadastro" (ngSubmit)="postDados()" >
     <ion-list>
       <ion-item>
           <ion-label floating></ion-label>
@@ -30,17 +30,40 @@
           <button [disabled]="cadastro.invalid" ion-button full block color="danger">Cadastrar</button>
       </ion-item>
     </ion-list>
+  </form> -->
+
+   <h2>Cadastro 2</h2>
+  <!--hashtag + f declara uma variável f que recebe ngForm. em postDados(f) f é passado como parametro-->
+  <form #f="ngForm" (ngSubmit)="postDados(f)" >
+    <ion-list>
+      <ion-item>
+          <ion-label floating></ion-label>                      
+          <ion-input name="nome" type="text" ngModel #nome="ngModel"></ion-input>
+      </ion-item>
+      <ion-item>
+          <ion-label floating></ion-label>
+          <ion-input name="email" type="text" ngModel #email="ngModel"></ion-input>
+      </ion-item>
+      <ion-item>
+          <ion-label floating></ion-label>
+          <ion-input name="senha" type="password" ngModel #senha="ngModel"></ion-input>
+      </ion-item>
+      <ion-item>
+          <button [disabled]="cadastro.invalid" ion-button full block color="danger">Cadastrar</button>
+      </ion-item>
+    </ion-list>
   </form>
+  <p>Valor do formulário: {{f.value | json}}</p>
   <ion-input type="text" name="nome" [(ngModel)]="nomeTeste"></ion-input>
-  <input type="text" name="email" 
-      [value]="email"
-      (input)="email = $event.target.value"
+  <input type="text" name="emailTeste" 
+      [value]="emailTeste"
+      (input)="emailTeste = $event.target.value"
   >
   {{nomeTeste}}
-  {{email}}
+  {{emailTeste}}
   <ion-card>
         <ion-card-content *ngFor="let user of users">
-              <h1 *ngIf="nome">{{user.nome}}</h1>
+              <h1 *ngIf="deveMostrarNome">{{user.nome}}</h1>
               <p>{{user.email}}</p>
         </ion-card-content>
         <button ion-button (click)="mostraNome()">
