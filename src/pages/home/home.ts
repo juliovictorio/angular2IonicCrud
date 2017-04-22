@@ -13,13 +13,15 @@ export class HomePage {
 
   teste:string = "testando 2...";
   constructor(public navCtrl: NavController, public service : ServiceProvider) {
-
+    console.log('home constructor');
+    this.getData();
   }
 
   getData(){
-    this.service.getData().subscribe(
-      data => this.users = data,
-      err => console.log(err)
+    this.service.getData()
+        .subscribe(
+        data => this.users = data,
+        err => console.log(err)
     );
   }
 
