@@ -15,6 +15,8 @@ export class HomePage implements OnInit{
 
   users : any[];
   nome : boolean = false;
+  nomeTeste : string;
+  email : string = "";
 
   teste:string = "testando 2...";
   constructor(public navCtrl: NavController, public service : ServiceProvider) {

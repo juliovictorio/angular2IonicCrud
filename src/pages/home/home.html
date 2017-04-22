@@ -10,7 +10,13 @@
 </ion-header>
 
 <ion-content padding>
-  <p>{{teste}}</p>
+  <ion-input type="text" name="nome" [(ngModel)]="nomeTeste"></ion-input>
+  <input type="text" name="email" 
+      [value]="email"
+      (input)="email = $event.target.value"
+  >
+  {{nomeTeste}}
+  {{email}}
   <ion-card>
         <ion-card-content *ngFor="let user of users">
               <h1 *ngIf="nome">{{user.nome}}</h1>
