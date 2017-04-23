@@ -49,4 +49,13 @@ export class HomePage implements OnInit{
     console.log(this.cadastro.value)
   }
 
+  postDadosForm2(req){
+   console.log(req.value);
+   this.service.postData(req.value)
+        .subscribe(
+            data => console.log(data),
+            err => console.log(err)
+        );
+  }
+
 }

@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Http } from '@angular/http';
+import { Http, Headers, Response, ResponseOptions } from '@angular/http';
 /*import {Observable} from 'rxjs/Observable';*/
 import 'rxjs/add/operator/map';
 
@@ -24,6 +24,17 @@ export class ServiceProvider {
 
   getData(){
      return this.http.get(this.api + 'apiRecupera.php').map(res => res.json())
+  }
+
+  postData(parans){
+    let headers = new Headers({'Content-Type' : 'application/x-www-form-urlencoded'});
+    
+    return this.http.post(this.api+'apiCadastro.php', parans,{
+      headers : headers,
+      method : 'POST'
+    }).map (
+      (res : Response) => {return res.json}
+    );
   }
 
 }
