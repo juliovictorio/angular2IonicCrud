@@ -53,7 +53,9 @@ export class HomePage implements OnInit{
    console.log(req.value);
    this.service.postData(req.value)
         .subscribe(
-            data => console.log(data),
+            function(data){
+              console.log(data.mensage)
+            },
             err => console.log(err)
         );
   }

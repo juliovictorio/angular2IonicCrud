@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Http, Headers, Response, ResponseOptions } from '@angular/http';
-/*import {Observable} from 'rxjs/Observable';*/
+import {Observable} from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
 
 
@@ -33,7 +33,7 @@ export class ServiceProvider {
       headers : headers,
       method : 'POST'
     }).map (
-      (res : Response) => {return res.json}
+      (res : Response) => {return res.json()}
     );
   }
 

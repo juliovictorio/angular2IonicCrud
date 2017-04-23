@@ -41,5 +41,9 @@
     "ionic-plugin-keyboard"
   ],
   "cordovaPlatforms": [],
-  "description": "IonicApp2-meu: An Ionic project"
+  "description": "IonicApp2-meu: An Ionic project",
+  
+  "config": {
+    "ionic_source_map": "source-map"
+  }
 }
