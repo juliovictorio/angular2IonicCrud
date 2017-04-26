@@ -61,7 +61,7 @@
   >
   {{nomeTeste}}
   {{emailTeste}}
-  <ion-card>
+  <!-- <ion-card>
         <ion-card-content *ngFor="let user of users">
               <h1 *ngIf="deveMostrarNome">{{user.nome}}</h1>
               <p>{{user.email}}</p>
@@ -69,5 +69,19 @@
         <button ion-button (click)="mostraNome()">
           Mostrar nome
         </button>
-  </ion-card>
+  </ion-card> -->
+  <ion-list *ngFor="let user of users">
+    <ion-item-sliding>
+      <ion-item>
+        <h1 *ngIf="deveMostrarNome">{{user.nome}}</h1>
+        <p>{{user.email}}</p>
+      </ion-item>
+      <ion-item-options side="right">
+        <button ion-button color="danger" (click)='deletarPerfil(user)'>Deletar</button>
+      </ion-item-options>
+      <ion-item-options side="left">
+        <button ion-button color="secondary" (click)='editarPerfil(user)'>Editar</button>
+      </ion-item-options>
+    </ion-item-sliding>
+  </ion-list>
 </ion-content>

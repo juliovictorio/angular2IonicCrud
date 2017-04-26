@@ -37,4 +37,26 @@ export class ServiceProvider {
     );
   }
 
+  deletaData(id){
+    let headers = new Headers({'Content-Type' : 'application/x-www-form-urlencoded'});
+    
+    return this.http.post(this.api+'apiDeleta.php', id,{
+      headers : headers,
+      method : 'POST'
+    }).map (
+      (res : Response) => {return res.json()}
+    );
+  }
+
+  updateData(parans){
+    let headers = new Headers({'Content-Type' : 'application/x-www-form-urlencoded'});
+    
+    return this.http.post(this.api+'apiUpdate.php', parans,{
+      headers : headers,
+      method : 'POST'
+    }).map (
+      (res : Response) => {return res.json()}
+    );
+  }
+
 }

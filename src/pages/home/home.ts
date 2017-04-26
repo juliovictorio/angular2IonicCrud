@@ -5,6 +5,8 @@ import { NavController } from 'ionic-angular';
 
 import {ServiceProvider} from '../../providers/service-provider';
 
+import { AlertController } from 'ionic-angular';
+
 @Component({
   selector: 'page-home',
   templateUrl: 'home.html'
@@ -12,7 +14,7 @@ import {ServiceProvider} from '../../providers/service-provider';
 export class HomePage implements OnInit{
 
   ngOnInit(){
-    this.getData();
+    this.getDados();
   }
 
   cadastro : any = {};
@@ -22,9 +24,11 @@ export class HomePage implements OnInit{
   emailTeste : string = "";
 
   teste:string = "testando 2...";
+
   constructor(public navCtrl: NavController, 
               /*public formBuilder : FormBuilder, do form 1*/
-               public service : ServiceProvider) {
+               public service : ServiceProvider,
+               public alertCtrl: AlertController) {
     console.log('home constructor');
     /*this.cadastro = this.formBuilder.group({ //do form 1
         nome:['', Validators.required],
@@ -33,7 +37,7 @@ export class HomePage implements OnInit{
     });*/
   }
 
-  getData(){
+  getDados(){
     this.service.getData()
         .subscribe(
         data => this.users = data,
@@ -53,11 +57,72 @@ export class HomePage implements OnInit{
    console.log(req.value);
    this.service.postData(req.value)
         .subscribe(
-            function(data){
+            (data) => {
               console.log(data.mensage)
+              this.getDados();
             },
             err => console.log(err)
         );
+  }
+
+  deletarPerfil(user){
+    console.log(user.id);
+    this.service.deletaData(user.id)
+        .subscribe(
+            (data) => {
+              console.log(data.mensage);
+              this.getDados();
+              //this.teste2();
+            },
+            err => console.log(err)
+        );
+  }
+
+  editarPerfil(user) {
+    let prompt = this.alertCtrl.create({
+      title: 'Editar perfil',
+      inputs: [
+        {
+          name: 'nome',
+          placeholder: 'nome',
+          value:user.nome
+        },
+        {
+          name: 'email',
+          placeholder: 'email',
+          value:user.email
+        },
+      ],
+      buttons: [
+        {
+          text: 'Cancelar',
+          handler: data => {
+            console.log('Cancel clicked');
+          }
+        },
+        {
+          text: 'Salvar',
+          handler: data => {
+
+            let params:any={
+              id:user.id,
+              nome:data.nome,
+              email:data.email
+            }
+            console.log(data);
+            this.service.updateData(params)
+            .subscribe(
+                (data) => {
+                  console.log(data.mensage)
+                  this.getDados();
+                },
+                err => console.log(err)
+            );
+          }
+        }
+      ]
+    });
+    prompt.present();
   }
 
 }
